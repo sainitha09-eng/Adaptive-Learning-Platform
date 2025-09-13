@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Wellness Monitor</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f2f6fa;
+      margin: 0;
+      padding: 20px;
+    }
+
+    header {
+      background-color: #30475e;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 8px;
+    }
+
+    section {
+      background-color: white;
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 10px;
+      max-width: 800px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #30475e;
+    }
+
+    textarea, input[type="text"], select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #0077b6;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #023e8a;
+    }
+
+    .output {
+      background-color: #e7f3ff;
+      padding: 15px;
+      border-left: 4px solid #0077b6;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Student Wellness Monitor</h1>
+    <p>Mental health platform for students with daily mood check-ins and wellness tracking</p>
+  </header>
+
+  <section>
+    <h2>📝 Daily Mood Check-in</h2>
+    <label for="mood">How are you feeling today?</label>
+    <select id="mood">
+      <option value="happy">😊 Happy</option>
+      <option value="neutral">😐 Neutral</option>
+      <option value="sad">😔 Sad</option>
+      <option value="stressed">😫 Stressed</option>
+      <option value="anxious">😟 Anxious</option>
+    </select>
+
+    <label for="notes">Additional Notes:</label>
+    <textarea id="notes" placeholder="Write your thoughts here..." rows="4"></textarea>
+
+    <button onclick="submitMood()">Submit</button>
+    <div class="output" id="moodOutput"></div>
+  </section>
+
+  <section>
+    <h2>📈 Sentiment Analysis & Recommendations</h2>
+    <button onclick="analyzeMood()">Get Wellness Tips</button>
+    <div class="output" id="recommendationOutput">
+      <!-- AI-based recommendation placeholder -->
+    </div>
+  </section>
+
+  <section>
+    <h2>📊 Mood Trend Visualization</h2>
+    <p>(Chart feature coming soon...)</p>
+  </section>
+
+  <script>
+    function submitMood() {
+      const mood = document.getElementById("mood").value;
+      const notes = document.getElementById("notes").value;
+      const output = `
+        <strong>Mood:</strong> ${mood}<br/>
+        <strong>Notes:</strong> ${notes || "No additional notes."}
+      `;
+      document.getElementById("moodOutput").innerHTML = output;
+    }
+
+    function analyzeMood() {
+      const mood = document.getElementById("mood").value;
+      let tips = "";
+
+      switch (mood) {
+        case "happy":
+          tips = "Keep up the positivity! Maybe share your joy with a friend today.";
+          break;
+        case "neutral":
+          tips = "Take a short walk or listen to some uplifting music.";
+          break;
+        case "sad":
+          tips = "Talk to someone you trust or write in a journal.";
+          break;
+        case "stressed":
+          tips = "Try a 5-minute breathing exercise or take a break from screens.";
+          break;
+        case "anxious":
+          tips = "Practice mindfulness or grounding techniques. You're not alone.";
+          break;
+      }
+
+      document.getElementById("recommendationOutput").innerHTML = <p>${tips}</p>;
+    }
+  </script>
+
+</body>
+</html>
